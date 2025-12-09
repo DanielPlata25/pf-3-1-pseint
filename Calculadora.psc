@@ -1,8 +1,7 @@
-Algoritmo Calculadora
+Algoritmo Calculadora_Nveces
 	
-	Definir number1, number2, resultado como real;
-	Definir menu Como Entero;
-	
+	Definir menu, index, veces Como Entero;
+	Definir number, numbers, resultado Como Real;
 	
 	Escribir  "Bienvenido a la calculadora de Plata";
 	Escribir  "Porfavor ingrese que tipo de calculo quiere hacer:";
@@ -12,29 +11,49 @@ Algoritmo Calculadora
 	Escribir  "4. Division";
 	Leer menu;
 	
-	Borrar Pantalla;
+	Escribir "Cuantas operaciones seran?";
+	Leer veces;
 	
-	Escribir "Ingresa el primer valor";
-	Leer number1;
-	Escribir "Ingresa el segudo valor";
-	Leer number2;
+	si veces == 0 || veces == 1 Entonces
+		Escribir "Ya que escribiste 0 o 1 la operacion sera 2";
+		veces <- 2;
+	FinSi
+	
+	Dimensionar  numbers[veces];
+	
+	Para index <- 0 Hasta  veces-1 Hacer
+		Escribir "Ingresa el valor " index+1;
+		Leer numbers[index];
+	FinPara
 	
 	Segun menu Hacer
 		1:
-			resultado <- number1 + number2;
+			resultado <- 0;
+			Para Cada number de numbers Hacer
+				resultado <- resultado + number;
+			FinPara
+			
 			Escribir "El resultado de la suma es: " resultado;
 		2:
-			resultado <- number1 - number2;
+			resultado <- numbers[0];
+			Para index <- 1 Hasta veces-1 Hacer
+				resultado <- resultado - numbers[index];
+			FinPara
 			Escribir "El resultado de la resta es: " resultado;
 		3:
-			resultado <- number1 * number2;
+			resultado <- 1;
+			Para Cada number de numbers Hacer
+				resultado <- resultado * number;
+			FinPara
 			Escribir "El resultado de la multiplicacion es: " resultado;
 		4:
-			resultado <- number1 / number2;
+			resultado <- numbers[0];
+			Para index <- 1 Hasta veces-1 Hacer
+				resultado <- resultado / numbers[index];
+			FinPara
 			Escribir "El resultado de la division es: " resultado;
 		De Otro Modo:
-			Escribir "La opcion que ingreso esta equivocada";			
+			Escribir "La opcion que ingreso del menu esta equivocada";			
 	FinSegun
-	
 	
 FinAlgoritmo
